@@ -36,13 +36,20 @@ list::size_type list::size(void) const{
 std::string list::toString(void) const{
 	std::string output;
 	int temp = head;
-	
+	while(temp != empty_head){
+		output.append(storage[temp].data);
+		output.append("->");
+		temp = storage[temp].next;
+	}
 	output.append("NULL");
 	return output;
 }
 void list::insert(int position, const int& data){
 	storage[empty_head].data = data;
-
+	int i = 0;
+	for (i = 0; i < 1000; ++i){
+		if(storage)
+	}
 }
 void list::erase(int position);
 void list::clear(void);
