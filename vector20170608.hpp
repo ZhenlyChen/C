@@ -57,8 +57,27 @@ class myVector : public Base {
             return _size;
         }
 
-        void resize(const std::size_t & newSize);
-        void resize(const std::size_t & newSize, const T & val);
+        void resize(const std::size_t & newSize){
+            if(newSize =< _size){
+                _size = newSize;
+            }else{
+                reserve(newSize);
+                for (int i = _size - 1; i < _capacity; ++i){
+                   _data[i] = T();
+                }
+            }
+        }
+        void resize(const std::size_t & newSize, const T & val){
+            if(newSize =< _size){
+                _size = newSize;
+            }else{
+                reserve(newSize);
+                for (int i = _size - 1; i < _capacity; ++i){
+                   _data[i] = val;
+                }
+            }
+
+        }
         inline std::size_t capacity() const{
             return _capacity;
         }
@@ -100,7 +119,9 @@ class myVector : public Base {
          // Modifiers
         template<typename InputIterator>
         void assign(InputIterator begin, InputIterator end);
-        void assign(const std::size_t & newSize, const T & val);
+        void assign(const std::size_t & newSize, const T & val){
+            resize(newSize, val);
+        }
         void push_back(const T & val){
             if(_size == _capacity){
                 reserve(_capacity * 2);
